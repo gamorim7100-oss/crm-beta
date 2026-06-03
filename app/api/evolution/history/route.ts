@@ -126,8 +126,8 @@ export async function POST(req: Request) {
 
     let synced = 0
     if (toInsert.length > 0) {
-      const { count } = await supabase.from('messages').insert(toInsert).select('', { count: 'exact', head: true })
-      synced = count || toInsert.length
+      const { data: inserted } = await supabase.from('messages').insert(toInsert).select()
+      synced = inserted?.length || toInsert.length
     }
 
     return NextResponse.json({ synced })
