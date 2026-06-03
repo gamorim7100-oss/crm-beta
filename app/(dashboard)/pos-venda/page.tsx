@@ -125,11 +125,11 @@ export default function PosVendaPage() {
       const seenPhones = new Set<string>()
       const merged: PosVendaItem[] = []
 
-      for (const [, client] of clientGroups) {
+      clientGroups.forEach((client) => {
         if (client.phone) seenPhones.add(client.phone)
         const match = client.phone ? leadsByPhone.current.get(client.phone) : undefined
         merged.push({ ...client, unread_count: (match as any)?.unread_count || undefined, last_message_text: (match as any)?.last_message_text || undefined })
-      }
+      })
 
       for (const l of leadsRes.data || []) {
         const phone = l.phone?.replace(/\D/g, '')
