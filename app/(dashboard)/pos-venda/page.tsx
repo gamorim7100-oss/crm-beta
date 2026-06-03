@@ -40,6 +40,7 @@ interface PosVendaItem {
   status?: string
   email?: string
   cpf?: string
+  notes?: string
   unread_count?: number
   last_message_text?: string
 }
